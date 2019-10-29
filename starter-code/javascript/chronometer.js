@@ -5,32 +5,39 @@ class Chronometer {
 	};
 
 	startClick() {
-    let currentTime = Date.now();
-	  let this.interval = setInterval(() => {
-	    this.currentTime = currentTime +1
-	  }), 1000)
+		this.intervalId = setInterval(function () {
+			this.currentTime += 1;
+			printTime(this);
+		}, 1000);
 	};
-	// The setInterval will be assigned to our intervalId property, this way we will be able to clear it later on.
 
-	// getMinutes() {
-	//  let minutes = 0;
-	//  minutes = this.currentTime/60;
-	// }
+	getMinutes() {
+		return Math.floor(this.currentTime / 60);
+	}
 
-	// getSeconds() {
-	//  let seconds = 0;
-	//  seconds = this.currentTime-minutes*60;
-	// }
+	getSeconds() {
+		return (this.currentTime - (this.getMinutes() * 60))
+	}
 
-	// twoDigitsNumber() {
-	// ..
-	// }
+	twoDigitsNumber(anyFormat) {
+		if (anyFormat < 10) {
+			return ("0" + anyFormat);
+		} else {
+			return anyFormat.toString();
+		};
+	}
+
+	resetClick() {
+		this.currentTime = 0;
+		this.intervalId = 0;
+	}
+
+	stopClick() {
+		clearInterval(this.intervalId);
+		delete this.intervalId;
+	}
 
 	// stopClick() {
-	// ..
-	// }
-
-	// resetClick() {
 	// ..
 	// }
 
